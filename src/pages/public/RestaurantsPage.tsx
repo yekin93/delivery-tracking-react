@@ -1,9 +1,9 @@
 export function RestaurantsPage() {
   return (
     <section>
-      <h2 className="text-2xl font-semibold">Restaurants</h2>
+      <h1 className="text-2xl font-semibold">Restaurants</h1>
       <p className="mt-2 text-slate-600">
-        Restaurant management will be shown here.
+        Public restaurant list placeholder.
       </p>
     </section>
   );

@@ -1,17 +1,23 @@
 import { NavLink, Outlet } from 'react-router-dom';
 
-const navigationItems = [
-  { label: 'Dashboard', to: '/dashboard' },
-  { label: 'Restaurants', to: '/restaurants' },
-  { label: 'Couriers', to: '/couriers' },
-  { label: 'Deliveries', to: '/deliveries' },
-];
+type NavigationItem = {
+  label: string;
+  to: string;
+};
 
-export function AppLayout() {
+type DashboardLayoutProps = {
+  title: string;
+  navigationItems: NavigationItem[];
+};
+
+export function DashboardLayout({
+  title,
+  navigationItems,
+}: DashboardLayoutProps) {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-slate-200 bg-white px-4 py-6 md:block">
-        <h1 className="px-3 text-lg font-semibold">Delivery Tracking</h1>
+        <h1 className="px-3 text-lg font-semibold">{title}</h1>
         <nav className="mt-8 space-y-1">
           {navigationItems.map((item) => (
             <NavLink
@@ -34,7 +40,7 @@ export function AppLayout() {
 
       <div className="md:pl-64">
         <header className="border-b border-slate-200 bg-white px-4 py-4 md:hidden">
-          <h1 className="text-lg font-semibold">Delivery Tracking</h1>
+          <h1 className="text-lg font-semibold">{title}</h1>
           <nav className="mt-3 flex gap-2 overflow-x-auto">
             {navigationItems.map((item) => (
               <NavLink

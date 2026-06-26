@@ -1,20 +1,30 @@
-import { UserRole } from './types';
+import { AuthUser } from './authTypes';
 
-export function getAccessToken() {
-  return localStorage.getItem('accessToken');
+const AUTH_USER_KEY = 'authUser';
+
+export function saveAuthUser(user: AuthUser) {
+  localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
 }
 
-export function getUserRole(): UserRole | null {
-  const role = localStorage.getItem('userRole');
+export function getAuthUser(): AuthUser | null {
+  const storedUser = localStorage.getItem(AUTH_USER_KEY);
 
-  if (
-    role === 'ADMIN' ||
-    role === 'RESTAURANT' ||
-    role === 'COURIER' ||
-    role === 'CUSTOMER'
-  ) {
-    return role;
+  if (!storedUser) {
+    return null;
   }
 
-  return null;
+  try {
+    return JSON.parse(storedUser) as AuthUser;
+  } catch {
+    clearAuthUser();
+    return null;
+  }
+}
+
+export function getAccessToken(): string | null {
+  return getAuthUser()?.token ?? null;
+}
+
+export function clearAuthUser() {
+  localStorage.removeItem(AUTH_USER_KEY);
 }

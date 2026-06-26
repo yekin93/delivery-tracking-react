@@ -1,18 +1,18 @@
 import { Navigate } from 'react-router-dom';
-import { getUserRole } from './authStorage';
+import { getAuthUser } from './authStorage';
 
 export function RoleBasedRedirect() {
-  const role = getUserRole();
+  const roles = getAuthUser()?.roles ?? [];
 
-  if (role === 'ADMIN') {
+  if (roles.includes('ADMIN')) {
     return <Navigate to="/admin/dashboard" replace />;
   }
 
-  if (role === 'RESTAURANT') {
+  if (roles.includes('RESTAURANT')) {
     return <Navigate to="/restaurant/dashboard" replace />;
   }
 
-  if (role === 'COURIER') {
+  if (roles.includes('COURIER')) {
     return <Navigate to="/courier/dashboard" replace />;
   }
 

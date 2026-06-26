@@ -1,6 +1,4 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import { ProtectedRoute } from '../features/auth/ProtectedRoute';
-import { RoleBasedRedirect } from '../features/auth/RoleBasedRedirect';
 import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage';
 import { AdminRestaurantsPage } from '../pages/admin/AdminRestaurantsPage';
 import { ForbiddenPage } from '../pages/auth/ForbiddenPage';
@@ -18,6 +16,7 @@ import { AdminLayout } from '../shared/layouts/AdminLayout';
 import { CourierLayout } from '../shared/layouts/CourierLayout';
 import { PublicLayout } from '../shared/layouts/PublicLayout';
 import { RestaurantLayout } from '../shared/layouts/RestaurantLayout';
+import { ProtectedRoute } from './ProtectedRoute';
 
 export const router = createBrowserRouter([
   {
@@ -47,14 +46,10 @@ export const router = createBrowserRouter([
         path: '/forbidden',
         element: <ForbiddenPage />,
       },
-      {
-        path: '/redirect',
-        element: <RoleBasedRedirect />,
-      },
     ],
   },
   {
-    element: <ProtectedRoute requiredRole="ADMIN" />,
+    element: <ProtectedRoute requiredRoles={['ADMIN']} />,
     children: [
       {
         element: <AdminLayout />,
@@ -72,7 +67,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    element: <ProtectedRoute requiredRole="RESTAURANT" />,
+    element: <ProtectedRoute requiredRoles={['RESTAURANT']} />,
     children: [
       {
         element: <RestaurantLayout />,
@@ -94,7 +89,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    element: <ProtectedRoute requiredRole="COURIER" />,
+    element: <ProtectedRoute requiredRoles={['COURIER']} />,
     children: [
       {
         element: <CourierLayout />,
@@ -108,7 +103,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    element: <ProtectedRoute requiredRole="CUSTOMER" />,
+    element: <ProtectedRoute requiredRoles={['CUSTOMER']} />,
     children: [
       {
         element: <PublicLayout />,

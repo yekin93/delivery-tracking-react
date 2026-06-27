@@ -1,6 +1,7 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage';
 import { AdminRestaurantsPage } from '../pages/admin/AdminRestaurantsPage';
+import { ApplyPage } from '../pages/apply/ApplyPage';
 import { ForbiddenPage } from '../pages/auth/ForbiddenPage';
 import { LoginPage } from '../pages/auth/LoginPage';
 import { RegisterPage } from '../pages/auth/RegisterPage';
@@ -45,6 +46,20 @@ export const router = createBrowserRouter([
       {
         path: '/forbidden',
         element: <ForbiddenPage />,
+      },
+    ],
+  },
+  {
+    element: <ProtectedRoute />,
+    children: [
+      {
+        element: <PublicLayout />,
+        children: [
+          {
+            path: '/apply',
+            element: <ApplyPage />,
+          },
+        ],
       },
     ],
   },

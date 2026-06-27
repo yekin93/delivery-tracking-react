@@ -44,7 +44,7 @@ export function LoginPage() {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
+            className="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-950 outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
           />
         </div>
 
@@ -61,7 +61,7 @@ export function LoginPage() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             required
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
+            className="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-950 outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
           />
         </div>
 
@@ -74,7 +74,7 @@ export function LoginPage() {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-slate-400"
+          className="w-full rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-slate-600 disabled:text-white"
         >
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
